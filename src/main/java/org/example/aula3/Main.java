@@ -7,7 +7,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        exibirTudo();
+        exibirTitulo();
 
         System.out.println("🦸🏽‍♂ Digite o nome do seu heroí: ️");
         String nomeHeroi = scanner.next();
@@ -61,6 +61,20 @@ public class Main {
 
         }
 
+        exibirVitoria(heroi, vitorias);
+        scanner.close();
+    }
+
+    private static void exibirTitulo() {
+        System.out.println("-------------------------------------------");
+        System.out.println("-         ⚔️ DUNGEON QUEST                -");
+        System.out.println("-  Programação Orientação a Objeto        -");
+        System.out.println("-------------------------------------------");
+        System.out.println();
+    }
+
+    private static void exibirGameOver() {
 
     }
+
 }
