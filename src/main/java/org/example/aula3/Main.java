@@ -12,7 +12,7 @@ public class Main {
         System.out.println("🦸🏽‍♂ Digite o nome do seu heroí: ️");
         String nomeHeroi = scanner.next();
 
-        Heroi heroi = new Heroi(nomeHeroi, 100,20,5);
+        Heroi heroi = new Heroi(nomeHeroi, 150,35,5);
 
         System.out.println("\n✅ Herói criado com sucesso!");
         heroi.exibirStatus();
@@ -73,8 +73,23 @@ public class Main {
         System.out.println();
     }
 
-    private static void exibirGameOver() {
-
+    private static void exibirGameOver(String nome, int vitorias, int xp) {
+        System.out.println("-------------------------------------------");
+        System.out.println("-            ☠️ GAME OVER                 -");
+        System.out.println("-------------------------------------------");
+        System.out.println(" Fim da Jornada de " + nome);
+        System.out.println(" Vitórias: "+ vitorias);
+        System.out.println(" XP Total: " + xp);
+        System.out.println();
     }
 
+    private static void exibirVitoria(Heroi heroi, int vitorias) {
+        System.out.println("-----------------------------------------------");
+        System.out.println("-           👑 DUNGEON COMPLETA!              -");
+        System.out.println("-----------------------------------------------");
+        System.out.println(" Parabéns, " + heroi.getNome() + "!");
+        System.out.println(" Vitórias: " + vitorias);
+        System.out.println(" XP Total: " + heroi.getXp());
+        heroi.exibirStatus();
+    }
 }
