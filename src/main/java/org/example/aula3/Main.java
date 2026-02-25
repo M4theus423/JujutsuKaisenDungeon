@@ -9,24 +9,27 @@ public class Main {
 
         exibirTitulo();
 
-        System.out.println("🦸🏽‍♂ Digite o nome do seu heroí: ️");
+        System.out.println("🦸🏽‍♂ Digite o nome do seu feitceiro: ️");
         String nomeHeroi = scanner.next();
 
         Heroi heroi = new Heroi(nomeHeroi, 150,35,5);
 
-        System.out.println("\n✅ Herói criado com sucesso!");
+        System.out.println("\n✅ Feiticeiro criado com sucesso!");
         heroi.exibirStatus();
 
         Monstro[] monstros = {
-                new Monstro("Goblin", "👿", 40,12,2,20),
-                new Monstro("Orc Guerreiro", "👺", 70,12,2,20),
-                new Monstro("Dragão Negro", "👽", 120,28,10,100)
+                new Monstro("Maldição Grau Especial", "👿", 23890,90,800,1500),
+                new Monstro("Maldição Grau 1", "👺", 780,90,87,1100),
+                new Monstro("Maldição Grau 2", "👽", 530,76,85,900),
+                new Monstro("Maldição Grau 3", "👻", 80,22,75,150),
+                new Monstro("Maldição Grau 4", "👹", 40,11,23,50),
+                new Monstro("Maldição Grau 5", "👾", 20,5,10,20)
         };
 
         int vitorias = 0;
 
         for(Monstro monstro: monstros) {
-            System.out.println("\n\n🗺️ Você avança pela dungeon...");
+            System.out.println("\n\n🗺️ Você avança pela estação...");
             System.out.println("🚪 Um " + monstro.getNome() + " bloqueia o caminho!");
             System.out.println("\n [1] Lutar");
             System.out.println(" [2] Fugir (pula essa batalha)");
@@ -41,7 +44,7 @@ public class Main {
             }
 
             if (opcao == 2) {
-                System.out.println(" 🏃🏽 Você fugiu para o proximo corredor...");
+                System.out.println(" 🏃🏽 Você fugiu para o proximo andar da estação...");
                 continue;
             }
 
@@ -67,7 +70,7 @@ public class Main {
 
     private static void exibirTitulo() {
         System.out.println("-------------------------------------------");
-        System.out.println("-         ⚔️ DUNGEON QUEST                -");
+        System.out.println("-         ⚔️ CURSED QUEST                -");
         System.out.println("-  Programação Orientação a Objeto        -");
         System.out.println("-------------------------------------------");
         System.out.println();
@@ -85,7 +88,7 @@ public class Main {
 
     private static void exibirVitoria(Heroi heroi, int vitorias) {
         System.out.println("-----------------------------------------------");
-        System.out.println("-           👑 DUNGEON COMPLETA!              -");
+        System.out.println("-           👑 ESTAÇÃO EXORCIZADA!              -");
         System.out.println("-----------------------------------------------");
         System.out.println(" Parabéns, " + heroi.getNome() + "!");
         System.out.println(" Vitórias: " + vitorias);
