@@ -4,19 +4,19 @@ import java.util.Scanner;
 
 public class Batalha {
 
-    private Heroi heroi;
+    private Heroi feiticeiro;
     private Monstro monstro;
     private Scanner scanner;
 
-    public Batalha(Heroi heroi, Monstro monstro, Scanner scanner) {
-        this.heroi = heroi;
-        this.monstro = monstro;
+    public Batalha(Heroi feiticeiro, Monstro maldicao, Scanner scanner) {
+        this.feiticeiro = feiticeiro;
+        this.monstro = maldicao;
         this.scanner = scanner;
     }
 
     /**
      * Inicia e controla o loop de batalha
-     * @return true se o heroi venceu, false se foi derrotado.
+     * @return true se o feiticeiro venceu, false se foi derrotado.
      */
 
     public boolean iniciar() {
@@ -24,11 +24,11 @@ public class Batalha {
 
         int turno = 1;
 
-        while (heroi.estaVivo() && monstro.estaVivo()) {
+        while (feiticeiro.estaVivo() && monstro.estaVivo()) {
             System.out.println("-------------- Turno " + turno + " -------------");
             exibirStatusBatalha();
 
-            turnoHeroi(); // jogador escolhe a ação
+            turnoFeiticeiro(); // jogador escolhe a ação
 
             if (monstro.estaVivo()) {
                 turnoMonstro();
@@ -41,22 +41,33 @@ public class Batalha {
 
     //---------------- Metodos Privados ---------------------
 
-    private void turnoHeroi() {
-        System.out.println("\n O que " + heroi.getNome() + " faz?");
+    private void turnoFeiticeiro() {
+        System.out.println("\n O que " + feiticeiro.getNome() + " faz?");
         System.out.println(" [1] Atacar");
-        System.out.println(" [2] Usar Poção ( " +heroi.getPocoes() + " restantes)");
+        System.out.println(" [2] Usar técnica reversa para se curar ( " +feiticeiro.getTecnicasAmaldiçoadasUsadas() + " restantes)");
+        System.out.println(" [3] USar item amaldiçoado");
         System.out.println(" Escolha: ");
 
         int escolha = lerEscolha();
 
         switch (escolha) {
             case 1:
-                int dano = heroi.atacar();
-                System.out.println("\n ⚔️ " + heroi.getNome() + " atacou por " + dano + "!");
+                int dano = feiticeiro.atacar();
+                System.out.println("\n ⚔️ " + feiticeiro.getNome() + " atacou por " + dano + "!");
                 monstro.receberDano(dano);
                 break;
             case 2:
-                heroi.usarPocao();
+                feiticeiro.usarTecnicaAmaldiçoada();
+                break;
+            case 3:
+                feiticeiro.listarInventario();
+                System.out.println("Digite o número do item/técnica a usar: ");
+                int indice = lerEscolha();
+                if (indice != -1) {
+                    feiticeiro.usarItem(indice);
+                } else {
+                    System.out.println(" ❌ Entrada inválida - turno perdido!!");
+                }
                 break;
             default:
                 System.out.println(" ❓ Opção inválida - turno perdido!!");
@@ -66,19 +77,19 @@ public class Batalha {
     private void turnoMonstro() {
         int dano = monstro.atacar();
         System.out.println("\n " + monstro.getNome() + " ataca por " + dano + "!");
-        heroi.receberDano(dano);
+        feiticeiro.receberDano(dano);
     }
 
     private boolean resolverFinal() {
         System.out.println("\n------------------------------------");
-        if (heroi.estaVivo()) {
+        if (feiticeiro.estaVivo()) {
             System.out.println(" 🎉 VITÓRIA!");
             System.out.println(" Você derrotou " + monstro.getNome() + "!");
-            heroi.ganharXp(monstro.getXpRecompensa());
+            feiticeiro.ganharXp(monstro.getXpRecompensa());
             return true;
         } else {
             System.out.println(" 💀 DERROTA!");
-            System.out.println(" " + heroi.getNome() + " foi derrotado...");
+            System.out.println(" " + feiticeiro.getNome() + " foi derrotado...");
             return false;
         }
     }
@@ -87,11 +98,11 @@ public class Batalha {
         System.out.println("---------------------------------");
         System.out.println("     ⚔️ BATALHA INICIADA!        ");
         System.out.println("----------------------------------");
-        System.out.println(" " + heroi.getNome() + " vs " + monstro.getNome());
+        System.out.println(" " + feiticeiro.getNome() + " vs " + monstro.getNome());
     }
 
     private void exibirStatusBatalha() {
-        heroi.exibirStatus();
+        feiticeiro.exibirStatus();
         System.out.println();
         monstro.exibirStatus();
     }
