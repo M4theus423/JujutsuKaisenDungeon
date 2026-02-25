@@ -1,6 +1,6 @@
 package org.example.aula3;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 public class Heroi {
 
@@ -13,6 +13,29 @@ public class Heroi {
     private int xp;
 
     private ArrayList<Item> inventario = new ArrayList<>();
+
+    private int nivel = 1;
+
+    private void verificarNivel() {
+        int xpNecessaria = nivel * 100;
+        if (xp >= xpNecessaria) {
+            nivel++;
+            ataque += 5;
+            defesa += 3;
+            vidaMaxima += 20;
+            vidaAtual += 20; // Cura o herói ao subir de nível
+            if(vidaAtual > vidaMaxima) vidaAtual = vidaMaxima;
+            tecnicasAmaldiçoadasUsadas++;
+
+            System.out.println("\n🎉 LEVEL UP! ");
+            System.out.println(" 🎉 " + nome + " subiu para o nível " + nivel + "! Atributos aumentados!");
+            System.out.println(" ⚔️ Ataque +10 | 🛡️ Defesa +5 | ❤️ Vida Máxima +50");
+        }   
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
 
     public Heroi(String nome, int vida, int ataque, int defesa) {
         this.nome = nome;
@@ -99,6 +122,7 @@ public class Heroi {
     public void ganharXp(int quantidade) {
         xp += quantidade;
         System.out.println(" ⭐⬆️" + quantidade + " XP! [Total: " + xp + "]");
+        verificarNivel();
     }
 
     public boolean estaVivo() {
@@ -112,6 +136,7 @@ public class Heroi {
         System.out.println(" 🛡️ Defesa: " + defesa);
         System.out.println(" ⚡ Técnicas Amaldiçoadas Usadas: " + tecnicasAmaldiçoadasUsadas);
         System.out.println(" ⭐ XP: " + xp);
+        System.out.println(" nível: " + nivel);
 
     }
 }
