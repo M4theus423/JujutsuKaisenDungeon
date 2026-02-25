@@ -1,5 +1,7 @@
 package org.example.aula3;
 
+import java.util.ArrayList;
+
 public class Heroi {
 
     private String nome;
@@ -7,8 +9,10 @@ public class Heroi {
     private int vidaAtual;
     private int ataque;
     private int defesa;
-    private int pocoes;
+    private int tecnicasAmaldiçoadasUsadas;
     private int xp;
+
+    private ArrayList<Item> inventario = new ArrayList<>();
 
     public Heroi(String nome, int vida, int ataque, int defesa) {
         this.nome = nome;
@@ -16,7 +20,7 @@ public class Heroi {
         this.vidaAtual = vida;
         this.ataque = ataque;
         this.defesa = defesa;
-        this.pocoes = 3;
+        this.tecnicasAmaldiçoadasUsadas = 0;
         this.xp = 0;
     }
 
@@ -24,7 +28,7 @@ public class Heroi {
     public int getVida()    { return  vidaAtual; }
     public int getAtaque()  { return ataque; }
     public int getDefesa()  { return defesa; }
-    public int getPocoes()  { return pocoes; }
+    public int getTecnicasAmaldiçoadasUsadas()  { return tecnicasAmaldiçoadasUsadas; }
     public int getXp()      { return xp; }
 
     public int atacar() {
@@ -44,13 +48,41 @@ public class Heroi {
 
     }
 
-    public boolean usarPocao() {
-        if (pocoes <= 0) {
-            System.out.println(" ❌ Sem poções!");
+    public void adicionarItem(Item item) {
+        inventario.add(item);
+        System.out.println(" 🎁 " + item.getNome() + " adicionado ao inventário!");
+    }
+
+    public void listarInventario() {
+        System.out.println("\n📦 Inventário de " + nome + ":");
+        if (inventario.isEmpty()) {
+            System.out.println(" (vazio)");
+        } else {
+            for (int i = 0; i < inventario.size(); i++) {
+                Item item = inventario.get(i);
+                System.out.println(" [" + (i+1) + "] " + item.getDescricao());
+            }
+        }
+    }
+
+    public boolean usarItem(int indice) {
+        if (indice < 1 || indice > inventario.size()) {
+            System.out.println(" ❌ Índice inválido!");
+            return false;
+        }
+        Item item = inventario.get(indice - 1);
+        item.usar(this);
+        inventario.remove(indice - 1);
+        return true;
+    }
+
+    public boolean usarTecnicaAmaldiçoada() {
+        if (tecnicasAmaldiçoadasUsadas >= 3) {
+            System.out.println(" ❌ Máximo de técnicas amaldiçoadas usadas!");
             return false;
         }
         if (vidaAtual == vidaMaxima){
-            System.out.println(" ⚠️ Vida já está cheia! Poção não foi usada.");
+            System.out.println(" ⚠️ Vida já está cheia! Técnica amaldiçoada não foi usada.");
             return false;
         }
 
@@ -58,9 +90,9 @@ public class Heroi {
         vidaAtual += cura;
         if ( vidaAtual > vidaMaxima) vidaAtual = vidaMaxima;
 
-        pocoes--;
-        System.out.println(" 🧪 " + nome + " usou poção! +30 💚 "
-                + "[💚 " + vidaAtual + "/" + vidaMaxima + "] [Poções: " + pocoes + "]");
+        tecnicasAmaldiçoadasUsadas++;
+        System.out.println(" 🧪 " + nome + " usou técnica amaldiçoada! +30 💚 "
+                + "[💚 " + vidaAtual + "/" + vidaMaxima + "] [Técnicas Amaldiçoadas Usadas: " + tecnicasAmaldiçoadasUsadas + "]");
         return true;
     }
 
@@ -78,7 +110,7 @@ public class Heroi {
         System.out.println(" ❤️ Vida: " + vidaAtual + "/" + vidaMaxima);
         System.out.println(" ⚔️ Ataque: " + ataque);
         System.out.println(" 🛡️ Defesa: " + defesa);
-        System.out.println(" 🧪 Poções: " + pocoes);
+        System.out.println(" ⚡ Técnicas Amaldiçoadas Usadas: " + tecnicasAmaldiçoadasUsadas);
         System.out.println(" ⭐ XP: " + xp);
 
     }
