@@ -95,4 +95,4 @@ public class Main {
         System.out.println(" XP Total: " + heroi.getXp());
         heroi.exibirStatus();
     }
-}
+} 
