@@ -14,16 +14,20 @@ public class Main {
 
         Heroi heroi = new Heroi(nomeHeroi, 150,35,5);
 
+        // Dando itens iniciais para o herói
+        heroi.adicionarItem(new Item("Poção de cura pequena", "cura", 30));
+        heroi.adicionarItem(new Item("Poção de cura média", "cura", 50));
+        heroi.adicionarItem(new Item("Poção de cura Grande", "cura", 70));
         System.out.println("\n✅ Feiticeiro criado com sucesso!");
         heroi.exibirStatus();
 
         Monstro[] monstros = {
-                new Monstro("Maldição Grau Especial", "👿", 23890,90,800,1500),
-                new Monstro("Maldição Grau 1", "👺", 780,90,87,1100),
-                new Monstro("Maldição Grau 2", "👽", 530,76,85,900),
+                new Monstro("Maldição Grau 5", "👾", 20,5,10,40),
+                new Monstro("Maldição Grau 4", "👹", 40,11,23,70),
                 new Monstro("Maldição Grau 3", "👻", 80,22,75,150),
-                new Monstro("Maldição Grau 4", "👹", 40,11,23,50),
-                new Monstro("Maldição Grau 5", "👾", 20,5,10,20)
+                new Monstro("Maldição Grau 2", "👽", 530,76,85,900),
+                new Monstro("Maldição Grau 1", "👺", 780,90,87,1100),
+                new Monstro("Maldição Grau Especial" , "👿", 23890,90,800,1500),
         };
 
         int vitorias = 0;
