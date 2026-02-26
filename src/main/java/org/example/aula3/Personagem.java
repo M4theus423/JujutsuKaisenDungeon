@@ -1,11 +1,10 @@
 package org.example.aula3;
 
 public class Personagem {
-
-    String nome;
-    int vida;
-    int ataque;
-    int defesa;
+    protected String nome;
+    protected int vida;
+    protected int ataque;
+    protected int defesa;
 
 
     public Personagem(String nome, int vida, int ataque, int defesa){
@@ -15,10 +14,10 @@ public class Personagem {
         this.defesa = defesa;
     }
 
-    void exibirStatus() {
-        System.out.println("=== " + nome + " ===");
-        System.out.println("❤️ Vida: " + vida);
-        System.out.println("⚔️ Ataque: " + ataque);
-        System.out.println("🛡️ Defesa: " + defesa);
+    
+    public void receberDano(int d) { /*Lógica com defesa, minimo 1 */ }
+    public boolean estaVivo() { return vida > 0; }
+    public String getNome() { return nome;}
+    public int getVida() { return vida; }
     }
-}
+
