@@ -1,0 +1,27 @@
+1.Se o Heroi herdar de Personagem, dá pra remover tudo que já existe lá, tipo nome,
+ ataque, defesa, vidaAtual e vidaMaxima. Também dá pra tirar os métodos atacar(),
+  receberDano() e estaVivo(), porque já vêm da classe pai.
+
+
+
+2.Ter o receberDano() em um lugar só é melhor porque evita repetir código.
+ Se precisar mudar alguma coisa, muda uma vez só e já funciona pra todos os personagens.
+
+3.O exibirStatus() ainda precisa existir nas subclasses porque cada personagem tem
+ coisas diferentes. O herói, por exemplo, tem XP, nível e poções, então precisa 
+ mostrar essas informações também.
+
+                                       Tabela de analise
+    Atributo/Metodo   |     Em Herói?   |    Em Monstro?   |              Observação                    |
+     nome  (String)   |     Sim         |    Sim           | Identico nos dois - candidato a classe base|
+ vida / vidaAtual(int)|     Sim         |    Sim           |      Lógica parecida, nomes diferentes     |
+    ataque(int)       |     Sim         |    Sim           |                  Identico                  |  
+    defesa(int)       |     Sim         |    Sim           |                  Identico                  |
+    pocoes(int)       |     Sim         |    Não           |             Exclusivo do Herói             |
+    xp(int)           |     Sim         |    Não           |             Exclusivo do Herói             |
+    xpRecompensa(int) |     Não         |    Sim           |            Exclusivo do Monstro            |
+    emoji(String)     |     Não         |    Sim           |            Exclusivo do Monstro            |
+    receeberDano(int) |    Sim          |    Sim           |        Logica quase identica               |
+    atacar()          |     Sim         |    Sim           |        Logica quase identica               |
+    estaVivo()        |     Sim         |    Sim           |                 Identico                   |
+    exibirStatus()    |     Sim         |    Sim           |  Diferente - dados diferentes variam       |
